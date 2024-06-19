@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .messages {
+            list-style-type: none;
+            padding: 0;
+            height: 300px;
+            overflow-y: auto;
+        }
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .message.left {
+            background-color: #d1ffd1;
+            align-self: flex-start;
+        }
+        .message.right {
+            background-color: #d1e0ff;
+            align-self: flex-end;
+        }
+        .form-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        .form-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Chat Application</h1>
+        <ul id="messages" class="messages"></ul>
+        <div class="form-container">
+            <input type="text" id="messageText" autocomplete="off"/>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        var ws = new WebSocket("ws://localhost:8000/ws");
+        var sender = prompt("Enter your name:");
+
+        ws.onmessage = function(event) {
+            var messages = document.getElementById('messages');
+            var message = document.createElement('li');
+            var content = document.createTextNode(event.data);
+            message.appendChild(content);
+
+            if (event.data.startsWith(sender + ":")) {
+                message.classList.add('message', 'left');
+            } else {
+                message.classList.add('message', 'right');
+            }
+
+            messages.appendChild(message);
+        };
+
+        function sendMessage() {
+            var input = document.getElementById("messageText");
+            ws.send(sender + ": " + input.value);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI OAuth Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+        ul li {
+            display: inline;
+            margin: 0 5px;
+        }
+        .button {
+            display: inline-block;
+            color: #333;
+            background: #77aaff;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #555;
+            color: #fff;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>FastAPI OAuth Example</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/login/google">Login with Google</a></li>
+                    <li><a href="/login/facebook">Login with Facebook</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Welcome to the FastAPI OAuth Example</h2>
+        <p>This is a simple example to demonstrate Google and Facebook OAuth with FastAPI.</p>
+        <a class="button" href="/login/google"><i class="fas fa-sign-in-alt"></i> Login with Google</a>
+        <a class="button" href="/login/facebook"><i class="fas fa-sign-in-alt"></i> Login with Facebook</a>
+    </div>
+    <footer>
+        <p>FastAPI OAuth Example &copy; 2023</p>
+    </footer>
+</body>
+</html>
